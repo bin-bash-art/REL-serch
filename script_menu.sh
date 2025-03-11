@@ -10,6 +10,10 @@ while true; do
     echo "Available Scripts:"
     echo "------------------------"
     
+    # 00オプションを最初に表示
+    echo "00  : all"
+    echo "------------------------"
+    
     # Get script list and store in array
     scripts=($(ls call/*.sh | grep -v "$0" | sort -V))
     total_scripts=${#scripts[@]}
@@ -64,6 +68,19 @@ while true; do
     
     # Process each script number
     for number in "${script_numbers[@]}"; do
+        # 00が入力された場合は全てのスクリプトを実行
+        if [ "$number" = "00" ]; then
+            echo "Executing ALL scripts..."
+            for script in "${scripts[@]}"; do
+                script_path="$script"
+                echo "Executing: $script_path"
+                bash "$script_path"
+                echo "Execution completed: $script_path"
+                echo ""
+            done
+            continue
+        fi
+        
         script_name="call/${number}.sh"  # Specify call directory
         
         if [ -f "$script_name" ]; then
