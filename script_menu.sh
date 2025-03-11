@@ -51,7 +51,7 @@ while true; do
     done
     
     echo ""
-    echo "Enter script numbers (example: 1 2 3) or 'q' to quit:"
+    echo "Enter script numbers (example: 01 02 03) or 'q' to quit:"
     read input
     
     if [ "$input" = "q" ] || [ "$input" = "Q" ]; then
